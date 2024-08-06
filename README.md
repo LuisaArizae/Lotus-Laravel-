@@ -1,66 +1,110 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# LotusTasks
+# LotusTasks
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+LotusTasks es una aplicación web diseñada para ayudarte a gestionar tus tareas diarias de manera eficiente y efectiva. La aplicación permite crear, actualizar, eliminar y marcar tareas como completadas.
 
-## About Laravel
+## Tabla de Contenidos
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- [Descripción](#descripción)
+- [Características](#características)
+- [Requisitos Previos](#requisitos-previos)
+- [Instalación](#instalación)
+- [Configuración de la Base de Datos](#configuración-de-la-base-de-datos)
+- [Uso](#uso)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Descripción
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+LotusTasks es una herramienta de gestión de tareas desarrollada con Laravel y Bootstrap. Permite a los usuarios organizar sus tareas, estableciendo prioridades y manteniéndolas al día.
 
-## Learning Laravel
+## Características
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Crear, leer, actualizar y eliminar tareas.
+- Marcar tareas como completadas.
+- Interfaz de usuario intuitiva y responsive.
+- Gestión de usuarios con autenticación y autorización.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Requisitos Previos
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Antes de comenzar, asegúrate de tener instalado en tu sistema:
 
-## Laravel Sponsors
+- PHP >= 7.4
+- Composer
+- npm
+- MySQL
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Instalación
 
-### Premium Partners
+1. Clona el repositorio en tu máquina local.
+   ```bash
+   git clone https://github.com/tu-usuario/lotustasks.git
+   cd lotustasks
+   
+2. Instala las dependencias de PHP con Composer.
+   composer install
+3. Instala las dependencias de Node.js.
+      npm install
+      npm run dev
+4. cp .env.example .env
+    php artisan key:generate
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## CONFIGURACIÓN DE LA BASE DE DATOS
+#1 Configura la conexión a la base de datos en el archivo .env:
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306// mirar en XAMPP puerto 
+DB_DATABASE=ToDo //Nuestra base se llase ToDo, aca deberia ver su nombre de bd
+DB_USERNAME=root //tu-usuario
+DB_PASSWORD=      //tu-contraseña
+#2 Luego, ejecuta las migraciones:
+-> php artisan migrate
+*************Script SQL para la Base de Datos*******************
+-- Crear la base de datos ToDo
 
-## Contributing
+CREATE DATABASE ToDo;
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+-- Usar la base de datos ToDo
+USE ToDo;
 
-## Code of Conduct
+-- Crear la tabla Users (ajustar según necesidades), 
+CREATE TABLE Users (
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(255) NOT NULL,
+email VARCHAR(255) NOT NULL UNIQUE,
+password VARCHAR(255) NOT NULL,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+-- Crear la tabla Tasks,
 
-## Security Vulnerabilities
+    CREATE TABLE Tasks (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    descrip TEXT,
+    isDone BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP);
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+-- Insertar registros en la tabla Tasks
+
+
+INSERT INTO Tasks (title, descrip) VALUES
+('Revisar correos electrónicos', 'Dedicar 30 minutos a revisar y responder correos electrónicos importantes.'),
+('Preparar presentación', 'Crear una presentación para la reunión del equipo sobre el progreso del proyecto.'),
+('Desarrollar nueva funcionalidad', 'Implementar la nueva funcionalidad de búsqueda en la aplicación y realizar pruebas.'),
+('Planificar reunión con el cliente', 'Establecer agenda y preparar puntos de discusión para la próxima reunión con el cliente.'),
+('Actualizar documentación del proyecto', 'Revisar y actualizar la documentación del proyecto para reflejar los cambios recientes.');
+
+
+
+-- Insertar registros en la tabla Tasks con fechas específicas
+INSERT INTO Tasks (title, descrip, created_at, updated_at) VALUES
+('Revisar correos electrónicos', 'Dedicar 30 minutos a revisar y responder correos electrónicos importantes.', '2023-07-15 10:00:00', '2023-07-15 10:00:00'),
+('Preparar presentación', 'Crear una presentación para la reunión del equipo sobre el progreso del proyecto.', '2023-08-20 14:00:00', '2023-08-20 14:00:00');
+
+
+## *USO*
+-- Inicia el servidor de desarrollo.
+--> php artisan serve
