@@ -1,0 +1,52 @@
+.sidebar {
+    background-color: #f8f9fa;
+    height: 100vh; 
+}
+.footer {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+.content-section {
+    padding: 20px;
+}
+.bg-gray-200 {
+    background-color: #f8f9fa;
+}
+.rounded-xl {
+    border-radius: 0.5rem;
+}
+.task-container {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    margin-bottom: 1rem; 
+}
+.task-content {
+    flex: 1; 
+    margin-right: 0.5rem; /* Reducido para estar más cerca de los botones */
+}
+.check-button,
+.trash-button {
+    background-color: #44a85b; /* Verde para el botón de check */
+    color: white; 
+    border: none; 
+    border-radius: 0.5rem; 
+    cursor: pointer;
+    width: 40px; /* Ancho fijo para ambos botones */
+    height: 40px; /* Alto fijo para ambos botones */
+    display: flex; /* Flex para centrar el contenido */
+    align-items: center; /* Centrar verticalmente */
+    justify-content: center; /* Centrar horizontalmente */
+    margin-left: 5px; /* Espacio entre los botones */
+}
+.trash-button {
+    background-color: #dc3545; /* Rojo para el botón de basura */
+}
+.check-button svg,
+.trash-button svg {
+    width: 20px; /* Tamaño del ícono */
+    height: auto;
+}

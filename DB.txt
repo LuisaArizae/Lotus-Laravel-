@@ -1,0 +1,28 @@
+#Este archivo tiene como proposito contener la bd 
+Create database ToDo;
+use ToDo;
+
+CREATE TABLE Tasks (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    descrip TEXT,
+    isDone BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+
+INSERT INTO Tasks (title, descrip) VALUES
+('Revisar correos electrónicos', 'Dedicar 30 minutos a revisar y responder correos electrónicos importantes.'),
+('Preparar presentación', 'Crear una presentación para la reunión del equipo sobre el progreso del proyecto.'),
+('Desarrollar nueva funcionalidad', 'Implementar la nueva funcionalidad de búsqueda en la aplicación y realizar pruebas.'),
+('Planificar reunión con el cliente', 'Establecer agenda y preparar puntos de discusión para la próxima reunión con el cliente.'),
+('Actualizar documentación del proyecto', 'Revisar y actualizar la documentación del proyecto para reflejar los cambios recientes.');
+
+INSERT INTO Tasks (title, descrip, created_at, updated_at) VALUES
+('Revisar correos electrónicos', 'Dedicar 30 minutos a revisar y responder correos electrónicos importantes.', '2023-07-15 10:00:00', '2023-07-15 10:00:00'),
+('Preparar presentación', 'Crear una presentación para la reunión del equipo sobre el progreso del proyecto.', '2023-08-20 14:00:00', '2023-08-20 14:00:00');
+
+select * from users;
+select * from Tasks;
+
